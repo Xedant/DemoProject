@@ -1,0 +1,4 @@
+project:
+  name: "Hello World Demo"
+  icon: ".xedant/project.svg"
+  description: "Demo project showcasing multiple technology stacks with Xedant Code"

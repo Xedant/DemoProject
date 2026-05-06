@@ -1,5 +1,32 @@
 deploy:
   server-netcore-debug:
+    os: linux
+    method: debug
+    path: "/tmp/demo/builds/server-netcore/publish"
+    watch: server-netcore-build
+    shallowCopy: true
+    command: "dotnet server-netcore.dll --urls http://0.0.0.0:5001"
+    delay: 1
+    url: http://localhost:5001/
+  server-python-debug:
+    os: linux
+    method: debug
+    path: "server-python/"
+    watch: server-python-install
+    shallowCopy: true
+    command: "python app.py"
+    delay: 2
+    url: http://localhost:5002/
+  server-node-debug:
+    os: linux
+    method: debug
+    path: "server-node/"
+    watch: server-node-install
+    shallowCopy: true
+    command: "node index.js"
+    delay: 2
+    url: http://localhost:5003/
+  server-netcore-debug-win:
     os: windows
     method: debug
     path: "server-netcore/bin/publish"
@@ -8,7 +35,7 @@ deploy:
     command: "server-netcore --urls http://localhost:5001"
     delay: 3
     url: http://localhost:5001/
-  server-python-debug:
+  server-python-debug-win:
     os: windows
     method: debug
     path: "server-python/"
@@ -17,7 +44,7 @@ deploy:
     command: "python app.py"
     delay: 2
     url: http://localhost:5002/
-  server-node-debug:
+  server-node-debug-win:
     os: windows
     method: debug
     path: "server-node/"

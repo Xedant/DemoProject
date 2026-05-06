@@ -1,0 +1,38 @@
+PreToolUse:
+  Bash:
+  - Type: deny
+    Command:
+    Pattern: dotnet build
+    Message: Don't build projects manually - it's done automatically
+    Regex: false
+  - Type: deny
+    Command:
+    Pattern: dotnet run
+    Message: Don't start projects manually - it's done automatically
+    Regex: false
+  - Type: deny
+    Command:
+    Pattern: npm run build
+    Message: Don't build projects manually - it's done automatically
+    Regex: false
+  - Type: deny
+    Command:
+    Pattern: npm run dev
+    Message: Don't start projects manually - it's done automatically
+    Regex: false
+  - Type: deny
+    Command:
+    Pattern: npm run link
+    Message: Don't lint projects manually - it's done automatically
+    Regex: false
+  - Type: deny
+    Command:
+    Pattern: npm run check
+    Message: Don't lint projects manually - it's done automatically
+    Regex: false
+  - Type: deny
+    Command:
+    Pattern: npx svelte-check
+    Message: Don't lint projects manually - it's done automatically
+    Regex: false
+UserPromptSubmit: {}

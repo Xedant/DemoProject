@@ -1,0 +1,9 @@
+skills:
+  version: 1.0
+  activated:
+    demo.development:
+      enabled: true
+      color: '#3b82f6'
+    demo.planning:
+      enabled: true
+      color: '#84cc16'

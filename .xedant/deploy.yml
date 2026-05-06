@@ -2,17 +2,17 @@ deploy:
   server-netcore-debug:
     os: windows
     method: debug
-    path: "build/server-netcore/publish"
-    watch: server-netcore-build
+    path: "server-netcore/bin/publish"
+    watch: "*.exe"
     shallowCopy: true
-    command: "dotnet server-netcore.dll --urls http://localhost:5001"
-    delay: 2
+    command: "server-netcore --urls http://localhost:5001"
+    delay: 3
     url: http://localhost:5001/
   server-python-debug:
     os: windows
     method: debug
     path: "server-python/"
-    watch: server-python-install
+    watch: "*.py"
     shallowCopy: true
     command: "python app.py"
     delay: 2
@@ -21,7 +21,7 @@ deploy:
     os: windows
     method: debug
     path: "server-node/"
-    watch: server-node-install
+    watch: "*.js"
     shallowCopy: true
     command: "node index.js"
     delay: 2

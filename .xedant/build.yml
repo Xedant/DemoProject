@@ -2,15 +2,7 @@ build:
   server-netcore-build:
     path: "server-netcore/"
     watch: "*.cs"
-    command: "cd server-netcore && dotnet publish server-netcore.csproj -c Release -o ../build/server-netcore/publish"
-    delay: 3
-    timeout: 60
-    stopStrings:
-      - "The operation was canceled"
-  server-python-install:
-    path: "server-python/"
-    watch: "*.py"
-    command: "cd server-python && pip install -r requirements.txt"
+    command: "cd server-netcore && dotnet publish server-netcore.csproj -c Release -o /tmp/demo/builds/server-netcore/publish"
     delay: 3
     timeout: 60
     stopStrings:
@@ -19,6 +11,14 @@ build:
     path: "server-node/"
     watch: "*.js"
     command: "cd server-node && npm install"
+    delay: 3
+    timeout: 60
+    stopStrings:
+      - "The operation was canceled"
+  server-python-install:
+    path: "server-python/"
+    watch: "*.py"
+    command: "cd server-python && pip install -r requirements.txt"
     delay: 3
     timeout: 60
     stopStrings:

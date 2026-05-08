@@ -6,23 +6,7 @@ build:
     delay: 3
     timeout: 60
     stopStrings:
-      - "The operation was canceled"
-  server-node-install:
-    path: "server-node/"
-    watch: "*.js"
-    command: "cd server-node && npm install"
-    delay: 3
-    timeout: 60
-    stopStrings:
-      - "The operation was canceled"
-  server-python-install:
-    path: "server-python/"
-    watch: "*.py"
-    command: "cd server-python && pip install -r requirements.txt"
-    delay: 3
-    timeout: 60
-    stopStrings:
-      - "The operation was canceled"
+      - "The operation was canceled"  
   client-svelte-build:
     path: "client-svelte/"
     watch: "*.ts *.js *.json *.svelte *.css *.html"

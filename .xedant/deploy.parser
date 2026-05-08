@@ -1,0 +1,126 @@
+# ASP.NET Core Runtime Error/Warning Parser
+# Format: [ERROR] or [WARNING] blocks with regex patterns per line
+# {{regex}} matches zero or more consecutive lines matching the inner pattern
+# Blocks are matched against deploy log output in order
+
+# --- ERRORS ---
+
+# Hosting failure (captures entire host crash: fail + crit + ❌ unhandled as one error)
+[ERROR]
+^fail\:.*Host\[\d+\]
+{{\S.*}}
+[/ERROR]
+
+# Unhandled exceptions (full stack trace)
+[ERROR]
+Unhandled exception\.
+{{\S.*}}
+[/ERROR]
+
+# Unhandled exceptions with ❌ prefix (standalone, not part of hosting failure)
+[ERROR]
+❌ Unhandled exception\.
+{{\S.*}}
+[/ERROR]
+
+# System exceptions with stack trace
+[ERROR]
+System\..*Exception\:.*
+{{^\s+\S.*}}
+[/ERROR]
+
+# Critical log level (Serilog/ILogger) - captures indented continuation lines
+[ERROR]
+^crit\:.*
+{{^\s+\S.*}}
+[/ERROR]
+
+# Fail log level (Serilog/ILogger) - captures indented continuation lines
+[ERROR]
+^fail\:.*
+{{^\s+\S.*}}
+[/ERROR]
+
+# Error log level (Serilog/ILogger) - captures indented continuation lines
+[ERROR]
+^err\:.*
+{{^\s+\S.*}}
+[/ERROR]
+
+# HTTP 500 internal server errors
+[ERROR]
+.*status code 500
+[/ERROR]
+
+# Connection refused errors
+[ERROR]
+Connection refused
+[/ERROR]
+
+# ECONNREFUSED
+[ERROR]
+ECONNREFUSED
+[/ERROR]
+
+# SQL database exceptions
+[ERROR]
+SqlException\:.*
+{{^\s+\S.*}}
+[/ERROR]
+
+# PostgreSQL exceptions
+[ERROR]
+NpgsqlException\:.*
+{{^\s+\S.*}}
+[/ERROR]
+
+# Timeout errors (database, HTTP, etc.)
+[ERROR]
+.*timed?\s*out.*
+[/ERROR]
+
+# Application crash / exit codes
+[ERROR]
+Application startup exception
+{{\S.*}}
+[/ERROR]
+
+# JavaScript/Node runtime errors (for non-ASP.NET deploys)
+[ERROR]
+Error\:.*
+{{^\s+at .*}}
+[/ERROR]
+
+# --- WARNINGS ---
+
+# Warning log level (Serilog/ILogger) - captures indented continuation lines
+[WARNING]
+^warn\:.*
+{{^\s+\S.*}}
+[/WARNING]
+
+# Warning log level (alternate format)
+[WARNING]
+^Warning\:.*
+{{^\s+\S.*}}
+[/WARNING]
+
+# Deprecation warnings
+[WARNING]
+.*is deprecated.*will be removed
+[/WARNING]
+
+# Obsolete warnings
+[WARNING]
+.*Obsolete\.*
+[/WARNING]
+
+# SSL/TLS certificate warnings
+[WARNING]
+.*SSL.*certificate.*
+[/WARNING]
+
+# HTTPS redirect warnings
+[WARNING]
+.*HTTPS.*redirect.*
+[/WARNING]

@@ -1,0 +1,25 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "dotnet C:\\Users\\Admin\\AppData\\Local\\Xedant\\Code\\XedantCode.dll --hook"
+          }
+        ]
+      },
+      {
+        "matcher": "AskUserQuestion",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "dotnet C:\\Users\\Admin\\AppData\\Local\\Xedant\\Code\\XedantCode.dll --hook"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": []
+  }
+}

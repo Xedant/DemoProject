@@ -1,0 +1,169 @@
+# Script Output Parser
+# Format: [ERROR] or [WARNING] blocks with regex patterns per line
+# {{regex}} matches zero or more consecutive lines matching the inner pattern
+# Blocks are matched against script output in order
+
+# --- ERRORS ---
+
+# Shell command not found
+[ERROR]
+.*command not found
+[/ERROR]
+
+# Shell permission denied
+[ERROR]
+.*Permission denied
+[/ERROR]
+
+# Shell no such file or directory
+[ERROR]
+No such file or directory
+[/ERROR]
+
+# Shell segmentation fault
+[ERROR]
+.*Segmentation fault
+{{.*}}
+[/ERROR]
+
+# Shell panic
+[ERROR]
+^panic\:.*
+{{^\s+.*}}
+[/ERROR]
+
+# Python tracebacks
+[ERROR]
+^Traceback \(most recent call last\)\:
+{{.*}}
+[/ERROR]
+
+# Python errors
+[ERROR]
+.*Error\:.*
+{{^\s+.*}}
+[/ERROR]
+
+# Python syntax errors
+[ERROR]
+.*SyntaxError\:.*
+[/ERROR]
+
+# Python module not found
+[ERROR]
+ModuleNotFoundError\:.*
+[/ERROR]
+
+# Python import errors
+[ERROR]
+ImportError\:.*
+[/ERROR]
+
+# Node.js errors with stack trace
+[ERROR]
+^Error\:.*
+{{^\s+at .*}}
+[/ERROR]
+
+# Node.js TypeError
+[ERROR]
+TypeError\:.*
+{{^\s+at .*}}
+[/ERROR]
+
+# npm ERR!
+[ERROR]
+^npm ERR\!.*
+[/ERROR]
+
+# yarn error
+[ERROR]
+^error.*
+[/ERROR]
+
+# dotnet build errors
+[ERROR]
+\(\d+,\d+\): error
+[/ERROR]
+
+# dotnet exceptions
+[ERROR]
+.*Exception\:.*
+{{^\s+.*}}
+[/ERROR]
+
+# dotnet fatal error
+[ERROR]
+^fatal error.*
+[/ERROR]
+
+# Unhandled exceptions (general)
+[ERROR]
+Unhandled exception\.
+{{\S.*}}
+[/ERROR]
+
+# Connection refused
+[ERROR]
+Connection refused
+[/ERROR]
+
+# ECONNREFUSED
+[ERROR]
+ECONNREFUSED
+[/ERROR]
+
+# Timeout errors
+[ERROR]
+.*timed?\s*out.*
+[/ERROR]
+
+# HTTP error status codes
+[ERROR]
+.*status code [45]\d\d
+[/ERROR]
+
+# --- WARNINGS ---
+
+# Python warnings
+[WARNING]
+.*Warning\:.*
+{{^\s+.*}}
+[/WARNING]
+
+# Python DeprecationWarning
+[WARNING]
+DeprecationWarning\:.*
+{{^\s+.*}}
+[/WARNING]
+
+# npm warnings
+[WARNING]
+^npm warn.*
+[/WARNING]
+
+# yarn warnings
+[WARNING]
+^warning.*
+[/WARNING]
+
+# dotnet build warnings
+[WARNING]
+\(\d+,\d+\): warning
+[/WARNING]
+
+# Shell warnings
+[WARNING]
+^Warning\:.*
+{{^\s+.*}}
+[/WARNING]
+
+# Deprecated warnings
+[WARNING]
+.*is deprecated.*will be removed
+[/WARNING]
+
+# Obsolete warnings
+[WARNING]
+.*Obsolete\.*
+[/WARNING]

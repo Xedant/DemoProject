@@ -1,0 +1,100 @@
+# js errors
+[ERROR]
+.*
+.*
+.*\^.*
+SyntaxError\:.*
+{{^\s+}}
+[/ERROR]
+
+# cs errors
+[ERROR]
+\(\d+,\d+\): error
+[/ERROR]
+
+# cs resource / metadata errors (CS1566 etc.)
+[ERROR]
+\[MsBuild\] CSC.*CS\d+\:.*
+[/ERROR]
+
+# cs warnings
+[WARNING]
+\(\d+,\d+\): warning
+[/WARNING]
+
+# TypeScript errors
+[ERROR]
+.*\.ts.*
+Error.*
+{{^\s+}}
+[/ERROR]
+
+# TypeScript warnings
+[WARNING]
+.*\.ts.*
+Warn.*
+{{^\s+}}
+[/WARNING]
+
+# Vite errors
+[ERROR]
+error during build\:
+.*
+.*
+.*
+[/ERROR]
+
+# Svelte errors (with indented context)
+[ERROR]
+.*\.svelte.*
+Error.*
+{{^\s+}}
+[/ERROR]
+
+# Svelte errors (no indented context - svelte-check format)
+[ERROR]
+.*\.svelte\:\d+\:\d+.*
+Error.*
+[/ERROR]
+
+# Svelte errors - component prop errors (no indented context)
+[ERROR]
+.*\.svelte.*
+Error\:.*(does not exist|implicitly has|Cannot use 'bind')
+[/ERROR]
+
+# Svelte errors
+[ERROR]
+.*\.ts.*
+Error.*
+[/ERROR]
+
+# Svelte warnings
+[WARNING]
+.*\.svelte.*
+Warn.*
+{{^\s+}}
+[/WARNING]
+
+# Svelte warnings
+[WARNING]
+.*\.svelte.*
+Warn.*
+https
+[/WARNING]
+
+# Vite dynamic import warnings
+[WARNING]
+\[plugin vite:reporter\]
+\(\!\).*
+[/WARNING]
+
+# Unused import warnings
+[WARNING]
+is imported from external module.*but never used
+[/WARNING]
+
+# ReSharper warnings
+[WARNING]
+\<Issue Type
+[/WARNING]

@@ -1,0 +1,7 @@
+build/*
+deploy/*
+temp/*
+**/bin/*
+project.db
+project.db-wal
+project.db-shm
